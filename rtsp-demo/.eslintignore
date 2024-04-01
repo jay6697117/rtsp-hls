@@ -1,0 +1,5 @@
+src/assets
+src/lib/
+public
+dist
+node_modules/

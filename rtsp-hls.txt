@@ -1,0 +1,13 @@
+# 视频转rtsp
+ffmpeg -re -stream_loop -1 -i /Users/zhangjinhui/Desktop/001.mp4 -c copy -f rtsp rtsp://127.0.0.1:8554/stream
+
+
+
+
+# rtsp转hls
+ffmpeg -i rtsp://127.0.0.1:8554/stream -c:v copy -c:a copy -f hls -hls_time 10 -hls_list_size 6 -hls_wrap 6 -start_number 1 "/Users/zhangjinhui/Desktop/videos/output.m3u8"
+
+
+
+# 视频转hls
+ffmpeg -re -i /Users/zhangjinhui/Desktop/rtsp-hls/001.mp4 -c:v libx264 -preset veryfast -maxrate 3000k -bufsize 6000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -f hls -hls_time 4 -hls_playlist_type event /Users/zhangjinhui/Desktop/rtsp-hls/videos/output.m3u8
